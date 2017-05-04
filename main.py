@@ -83,7 +83,8 @@ def main_list():
     with open('database.csv') as data:
         data_list = data.read().splitlines()
         data_list = [item.split(',') for item in data_list]
-    menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria', 'Business Value', 'Estimation', 'Status']
+    menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
+            'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
     return render_template('list.html', menu=menu, data_list=data_list)
 
 
