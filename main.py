@@ -42,6 +42,9 @@ def update_show(id):
         for item in data_list:
             if int(item[0]) == int(id):
                 selected_story = item
+        selected_story.append(id)
+        selected_story.append("Thank you, your changes has been saved!")
+        # 0-6 items, 7 id, 8 thanks txt
         return render_template('update.html', sel_list=selected_story)
 
 

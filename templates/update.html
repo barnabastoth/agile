@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <form id="elsoform" action="/update/0" method="post">
+    <form id="elsoform" action="/update/{{ sel_list[7] }}" method="post">
         <div>
             <h1>User Story manager - Add new Story</h1>
+            <h2> {{ sel_list[8] }} </h2>
             <label>
                 <span>Story Title</span><input type="text" value=" {{ sel_list[1] }} " id="title" name="title" />
             </label>
