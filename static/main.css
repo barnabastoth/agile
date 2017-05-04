@@ -4,15 +4,15 @@ body {
 }
 
 form {
-    background-color: #6DBDD6;
+    background-color: #393f4d;
     width: 250px;
     height: 475px;
-    border: 1px solid #999;
+    border: 1px solid black;
     font-family: Tahoma, Geneva, sans-serif;
     font-style: italic;
     font-size: 14px;
     margin: auto;
-    color: green;
+    color: #feda6a;
     border-radius: 15px;
     padding: 10px;
     position: relative;
@@ -41,6 +41,7 @@ textarea {
 
 select {
     width: 250px;
+    margin: 5px 0px 5px 0px;
 }
 
 table {
