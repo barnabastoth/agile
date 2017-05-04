@@ -5,12 +5,12 @@ import csv
 app = Flask(__name__)
 
 
-@app.route('/create')
+@app.route('/story')
 def create():
     return render_template('create.html')
 
 
-@app.route("/create", methods=['POST'])
+@app.route("/story", methods=['POST'])
 def create_save():
     title = request.form['title']
     story = request.form['story']
@@ -33,7 +33,7 @@ def create_save():
     return render_template('create.html', name="Thank you, your story has been saved")
 
 
-@app.route("/update/<int:id>", methods=["GET"])
+@app.route("/story/<int:id>", methods=["GET"])
 def update_show(id):
     with open('database.csv') as data:
         data_list = data.read().splitlines()
@@ -42,13 +42,16 @@ def update_show(id):
         for item in data_list:
             if int(item[0]) == int(id):
                 selected_story = item
-        selected_story.append(id)
-        selected_story.append("Thank you, your changes has been saved!")
-        # 0-6 items, 7 id, 8 thanks txt
-        return render_template('update.html', sel_list=selected_story)
+
+        selected = ['', '', '', '', '']
+        options = ["Planning", "TODO", "In Progress", "Review", "Done"]
+        for i in range(len(selected)):
+            if selected_story[6] == options[i]:
+                selected[i] = "selected"
+        return render_template('update.html', sel_list=selected_story, id=id, selected=selected)
 
 
-@app.route("/update/<int:id>", methods=['POST'])
+@app.route("/story/<int:id>", methods=['POST'])
 def update_save(id):
     title = request.form['title']
     story = request.form['story']
@@ -72,6 +75,16 @@ def update_save(id):
             asd = ",".join(item)
             file.write(str(asd) + "\n")
     return "csa"
+
+
+@app.route("/", methods=['GET', 'POST'])
+@app.route("/list", methods=['GET', 'POST'])
+def main_list():
+    with open('database.csv') as data:
+        data_list = data.read().splitlines()
+        data_list = [item.split(',') for item in data_list]
+    menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria', 'Business Value', 'Estimation', 'Status']
+    return render_template('list.html', menu=menu, data_list=data_list)
 
 
 if __name__ == "__main__":

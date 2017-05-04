@@ -3,14 +3,13 @@
 <html>
 
 <head>
-    <title>story</title>
+    <title>Create a story</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <form id="elsoform" action="/create" method="post">
-        <div>
+    <div>
+        <form id="elsoform" action="/story" method="post">
             <h1>User Story manager - Add new Story</h1>
-            <h2> {{ name }} </h2>
             <label>
                 <span>Story Title</span><input type="text" id="title" name="title" />
             </label>
@@ -45,7 +44,6 @@
                 <input type="submit" value="Create" />
             </label>
 
-
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
