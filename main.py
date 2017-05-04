@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import csv
 
 
@@ -74,11 +74,18 @@ def update_save(id):
         for item in final_list:
             asd = ",".join(item)
             file.write(str(asd) + "\n")
-    return "csa"
+    # menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
+    #         'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
+    # return render_template('list.html', menu=menu, data_list=final_list)
+    return redirect("/list")
 
 
-@app.route("/", methods=['GET', 'POST'])
-@app.route("/list", methods=['GET', 'POST'])
+# redirect
+# barna
+
+
+@app.route("/", methods=['GET'])
+@app.route("/list", methods=['GET'])
 def main_list():
     with open('database.csv') as data:
         data_list = data.read().splitlines()
@@ -86,6 +93,24 @@ def main_list():
     menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
             'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
     return render_template('list.html', menu=menu, data_list=data_list)
+
+
+@app.route("/delete/<int:id>", methods=["POST"])
+def delete(id):
+    with open('database.csv') as data:
+        data_list = data.read().splitlines()
+        data_list = [item.split(',') for item in data_list]
+        for item in data_list:
+            if int(item[0]) == int(id):
+                data_list.remove(item)
+    with open('database.csv', 'w') as file:
+        for item in data_list:
+            datas = ",".join(item)
+            file.write(str(datas) + "\n")
+    menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
+            'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
+
+    return render_template('list.html', menu=menu, data_list=data_list, id=str(id))
 
 
 if __name__ == "__main__":
