@@ -23,21 +23,21 @@ def create_save():
         next_id = str(len(data_list))
 
     with open('database.csv', 'a') as file:
-        file.write(str(next_id + ','))
-        file.write(str(title + ','))
-        file.write(str(story + ','))
-        file.write(str(criteria + ','))
-        file.write(str(business + ','))
-        file.write(str(estimation + ','))
+        file.write(str(next_id + "ß¤"))
+        file.write(str(title + "ß¤"))
+        file.write(str(story + "ß¤"))
+        file.write(str(criteria + "ß¤"))
+        file.write(str(business + "ß¤"))
+        file.write(str(estimation + "ß¤"))
         file.write(str(progress + "\n"))
-    return render_template('create.html', name="Thank you, your story has been saved")
+    return redirect("/list")
 
 
 @app.route("/story/<int:id>", methods=["GET"])
 def update_show(id):
     with open('database.csv') as data:
         data_list = data.read().splitlines()
-        data_list = [item.split(',') for item in data_list]
+        data_list = [item.split("ß¤") for item in data_list]
         selected_story = []
         for item in data_list:
             if int(item[0]) == int(id):
@@ -59,11 +59,11 @@ def update_save(id):
     business = request.form['business']
     estimation = request.form['estimation']
     progress = request.form['progress']
-    new_list = [str(id), str(title), str(story), str(criteria), str(business), str(estimation), str(progress)]
+    new_list = [str(id), title, story, criteria, business, estimation, progress]
     final_list = []
     with open('database.csv') as data:
         data_list = data.read().splitlines()
-        data_list = [item.split(',') for item in data_list]
+        data_list = [item.split("ß¤") for item in data_list]
         for item in data_list:
             if int(item[0]) == int(id):
                 final_list.append(new_list)
@@ -72,16 +72,12 @@ def update_save(id):
 
     with open('database.csv', 'w') as file:
         for item in final_list:
-            asd = ",".join(item)
+            asd = "ß¤".join(item)
             file.write(str(asd) + "\n")
-    # menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
-    #         'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
-    # return render_template('list.html', menu=menu, data_list=final_list)
     return redirect("/list")
 
 
 # redirect
-# barna
 
 
 @app.route("/", methods=['GET'])
@@ -89,7 +85,7 @@ def update_save(id):
 def main_list():
     with open('database.csv') as data:
         data_list = data.read().splitlines()
-        data_list = [item.split(',') for item in data_list]
+        data_list = [item.split("ß¤") for item in data_list]
     menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
             'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
     return render_template('list.html', menu=menu, data_list=data_list)
@@ -99,17 +95,16 @@ def main_list():
 def delete(id):
     with open('database.csv') as data:
         data_list = data.read().splitlines()
-        data_list = [item.split(',') for item in data_list]
+        data_list = [item.split("ß¤") for item in data_list]
         for item in data_list:
             if int(item[0]) == int(id):
                 data_list.remove(item)
     with open('database.csv', 'w') as file:
         for item in data_list:
-            datas = ",".join(item)
+            datas = "ß¤".join(item)
             file.write(str(datas) + "\n")
     menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
             'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
-
     return render_template('list.html', menu=menu, data_list=data_list, id=str(id))
 
 
