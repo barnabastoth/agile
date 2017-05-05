@@ -99,6 +99,7 @@ def delete(id):
         for item in data_list:
             if int(item[0]) == int(id):
                 data_list.remove(item)
+
     with open('database.csv', 'w') as file:
         for item in data_list:
             datas = "ß¤".join(item)

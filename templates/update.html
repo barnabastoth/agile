@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
+    <button id="home" onclick="location.href='/'" type="button">
+     Home</button>
     <div id="formdiv">
         <form action="/story/{{ id }}" method="post">
-            <h1>User Story manager - Add new Story</h1>
+            <h1>User Story manager</h1>
+            <h2>Update your story}</h2>
             <label>
                 <span>Story Title</span><input type="text" value=" {{ sel_list[1] }} " id="title" name="title" />
             </label>
@@ -31,6 +34,7 @@
             </label>
 
             <label>
+                <span>Status</span>
                 <select name="progress" required>
                     <option {{ selected[0]}} value="Planning">Planning</option>
                     <option {{ selected[1]}} value="TODO">TODO</option>
@@ -41,7 +45,7 @@
             </label>
 
             <label>
-                <input type="submit" value="Update" />
+                <input id="submit" type="submit" value="Update" />
             </label>
 
         </form>

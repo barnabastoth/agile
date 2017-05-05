@@ -1,11 +1,10 @@
 with open('database.csv') as data:
     data_list = data.read().splitlines()
-    data_list = [item.split(',') for item in data_list]
-    q = []
+    data_list = [item.split('ß¤') for item in data_list]
+    id = 1
     for item in data_list:
-        if item[1] == "qwe":
-            q.append(["kutya", "macska"])
-        else:
-            q.append(item)
+        if int(item[0]) == id:
+            data_list.remove(item)
+    for item in data_list:
+        item[0] = data_list.index(item)
     print(data_list)
-    print(q)

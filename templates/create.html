@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
+    <button id="home" onclick="location.href='/'" type="button">
+     Home</button>
     <div>
         <form id="elsoform" action="/story" method="post">
-            <h1>User Story manager - Add new Story</h1>
+            <h1>User Story manager</h1>
+            <h2>Add new Story</h2>
             <label>
                 <span>Story Title</span><input type="text" id="title" name="title" />
             </label>
@@ -31,6 +34,7 @@
             </label>
 
             <label>
+                <span>Status</span>
                 <select name="progress" required>
                     <option value="Planning">Planning</option>
                     <option value="TODO">TODO</option>
