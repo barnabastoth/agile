@@ -4,50 +4,62 @@
 
 <head>
     <title>Update a story</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
 </head>
 <body>
-    <button id="home" onclick="location.href='/'" type="button">
-     Home</button>
-    <div id="formdiv">
-        <form action="/story/{{ id }}" method="post">
-            <h1>User Story manager</h1>
-            <h2>Update your story}</h2>
-            <label>
-                <span>Story Title</span><input type="text" value=" {{ sel_list[1] }} " id="title" name="title" />
-            </label>
-
-            <label>
-                <span>User Story</span><textarea type="text" id="story" name="story">{{ sel_list[2] }}</textarea />
-            </label>
-
-            <label>
-                <span>Acceptance Criteria</span><textarea type="text" id="criteria" name="criteria">{{ sel_list[3] }}</textarea>
-            </label>
-
-            <label>
-                <span>Business Value</span><input type="number" value={{ sel_list[4] }} min="100" max="<1500></1500>" step="100" id="business" name="business" required>
-            </label>
-
-            <label>
-                <span>Estimation (h)</span><input type="number" value={{ sel_list[5] }} min="0.5" max="40" step="0.5" id="estimation" name="estimation" required>
-            </label>
-
-            <label>
-                <span>Status</span>
-                <select name="progress" required>
-                    <option {{ selected[0]}} value="Planning">Planning</option>
-                    <option {{ selected[1]}} value="TODO">TODO</option>
-                    <option {{ selected[2]}} value="In Progress">In Progress</option>
-                    <option {{ selected[3]}} value="Review">Review</option>
-                    <option {{ selected[4]}} value="Done">Done</option>
-                </select>
-            </label>
-
-            <label>
-                <input id="submit" type="submit" value="Update" />
-            </label>
-
+    <div class="leftmenu">
+        <ul>
+            <li><img src="http://www.euroastra.hu/files/images/logo_large@2x.png"></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/story">Create a new story</a></li>
+            <li><a href="/story">How it works</a></li>
+            <li><a href="/story">About</a></li>
+            <li><a href="/story">Contact</a></li>
+            <li><a href="http://codecool.com">Codecool</a></li>
+        </ul>
+    </div>
+    <div class="create">
+        <form action="/story">
+            <input type="image" src="http://www.freeiconspng.com/uploads/add-create-new-plus-icon-26.png"/> 
         </form>
     </div>
+    <form class="createform" action="/story/{{ id }}" method="post">
+        <h1>User Story manager</h1>
+        <h2>Update your story</h2>
+        <label>
+            <span>Story Title</span><input type="text" value=" {{ sel_list[1] }} " id="title" name="title" />
+        </label>
+
+        <label>
+            <span>User Story</span><textarea type="text" id="story" name="story">{{ sel_list[2] }}</textarea />
+        </label>
+
+        <label>
+            <span>Acceptance Criteria</span><textarea type="text" id="criteria" name="criteria">{{ sel_list[3] }}</textarea>
+        </label>
+
+        <label>
+            <span>Business Value</span><input type="number" value={{ sel_list[4] }} min="100" max="<1500></1500>" step="100" id="business" name="business" required>
+        </label>
+
+        <label>
+            <span>Estimation (h)</span><input type="number" value={{ sel_list[5] }} min="0.5" max="40" step="0.5" id="estimation" name="estimation" required>
+        </label>
+
+        <label>
+            <span>Status</span>
+            <select name="progress" required>
+                <option {{ selected[0]}} value="Planning">Planning</option>
+                <option {{ selected[1]}} value="TODO">TODO</option>
+                <option {{ selected[2]}} value="In Progress">In Progress</option>
+                <option {{ selected[3]}} value="Review">Review</option>
+                <option {{ selected[4]}} value="Done">Done</option>
+            </select>
+        </label>
+
+        <label>
+            <input id="submit" type="submit" value="Update" />
+        </label>
+
+    </form>
 </body>

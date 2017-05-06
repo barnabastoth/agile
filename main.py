@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect
-import csv
 
 
 app = Flask(__name__)
@@ -20,7 +19,8 @@ def create_save():
     progress = request.form['progress']
     with open('database.csv') as data:
         data_list = data.read().splitlines()
-        next_id = str(len(data_list))
+        data_list = [item.split("ß¤") for item in data_list]
+        next_id = str(int(data_list[-1][0]) + 1)
 
     with open('database.csv', 'a') as file:
         file.write(str(next_id + "ß¤"))

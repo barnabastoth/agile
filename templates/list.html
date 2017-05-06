@@ -7,33 +7,59 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
 </head>
 <body>
-    <button id="create" onclick="location.href='/story'" type="button">
+    <table align="center" border="1"; class="topmenu">
+        <tr>
+            <td>ID</td>
+            <td>Story Title</td>
+            <td>User Story</td>
+            <td>Acceptance Criteria</td>
+            <td>Business Value</td>
+            <td>Estimation (h)</td>
+            <td>Status</td>
+            <td>Edit</td>
+            <td>delete</td>
+        </tr>
+    </table>
+    <div class="leftmenu">
+        <ul>
+            <li><img src="http://www.euroastra.hu/files/images/logo_large@2x.png"></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/story">Create a new story</a></li>
+            <li><a href="/story">How it works</a></li>
+            <li><a href="/story">About</a></li>
+            <li><a href="/story">Contact</a></li>
+            <li><a href="http://codecool.com">Codecool</a></li>
+        </ul>
+    </div>
+    <div class="create">
+        <form action="/story">
+            <input type="image" src="http://www.freeiconspng.com/uploads/add-create-new-plus-icon-26.png"/> 
+        </form>
+    </div>
+    <!--<button id="create" onclick="location.href='/story'" type="button">
      Create a new story</button>
     <button id="home" onclick="location.href='/'" type="button">
-     Home</button>
-    <table border="1">
-        <tr>
-            
-        </tr>
-        <div>
+     Home</button>-->
+    <table class="mainlist" border="1">
+        <!--<thead>
             <tr>
                 {% for item in menu %}
                 <td>{{ item }}</td>
                 {% endfor %}
             </tr>
-            {% for item in data_list %}
-            <tr>
-                {% for items in item %}
-                <td>{{ items }}</td>
-                {% endfor %}
-                <td><a href= /story/{{ item[0] }}> <img src="http://www.argus-tv.com/wiki/images/e/eb/ICN_EDIT_GREEN.PNG" height="20px" width="20px"/></a></td>  
-                <td><form action="/delete/{{ item[0] }}" method="post">
-                <input type="image" src="http://www.freeiconspng.com/uploads/garbage-bin-png-12.png" height="20px" width="20px"/> 
-                </form>
-                </td>
-            </tr>
+        </thead>-->
+        {% for item in data_list %}
+        <tr>
+            {% for items in item %}
+            <td>{{ items }}</td>
             {% endfor %}
-        </div>
+            <td><a href= /story/{{ item[0] }}> <img src="http://www.argus-tv.com/wiki/images/e/eb/ICN_EDIT_GREEN.PNG" height="20px" width="20px"/></a></td>  
+            <td><form action="/delete/{{ item[0] }}" method="post">
+            <input type="image" src="http://www.freeiconspng.com/uploads/garbage-bin-png-12.png" height="20px" width="20px"/> 
+            </form>
+            </td>
+        </tr>
+            {% endfor %}
     </table>
 </body>
 
