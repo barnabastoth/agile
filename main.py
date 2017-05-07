@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 @app.route('/story')
 def create():
-    return render_template('create.html')
+    title = "Super Sprinter 3000 - Add new Story"
+    return render_template('create.html', title=title)
 
 
 @app.route("/story", methods=['POST'])
@@ -17,10 +18,13 @@ def create_save():
     business = request.form['business']
     estimation = request.form['estimation']
     progress = request.form['progress']
+    criteria = str(criteria).replace("\n", "")
     with open('database.csv') as data:
         data_list = data.read().splitlines()
         data_list = [item.split("ß¤") for item in data_list]
-        next_id = str(int(data_list[-1][0]) + 1)
+        next_id = '0'
+        if len(data_list) > 0:
+            next_id = str(int(data_list[-1][0]) + 1)
 
     with open('database.csv', 'a') as file:
         file.write(str(next_id + "ß¤"))
@@ -48,7 +52,8 @@ def update_show(id):
         for i in range(len(selected)):
             if selected_story[6] == options[i]:
                 selected[i] = "selected"
-        return render_template('update.html', sel_list=selected_story, id=id, selected=selected)
+        title = "Super Sprinter 3000 - Edit Story"
+        return render_template('update.html', sel_list=selected_story, id=id, selected=selected, title=title)
 
 
 @app.route("/story/<int:id>", methods=['POST'])
@@ -77,9 +82,6 @@ def update_save(id):
     return redirect("/list")
 
 
-# redirect
-
-
 @app.route("/", methods=['GET'])
 @app.route("/list", methods=['GET'])
 def main_list():
@@ -88,7 +90,8 @@ def main_list():
         data_list = [item.split("ß¤") for item in data_list]
     menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
             'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
-    return render_template('list.html', menu=menu, data_list=data_list)
+    title = "Super Sprinter 3000"
+    return render_template('list.html', menu=menu, data_list=data_list, title=title)
 
 
 @app.route("/delete/<int:id>", methods=["POST"])
@@ -107,6 +110,25 @@ def delete(id):
     menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
             'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
     return render_template('list.html', menu=menu, data_list=data_list, id=str(id))
+
+
+@app.route("/search", methods=['POST'])
+def search():
+    search = request.form['search']
+    with open('database.csv') as data:
+        data_list = data.read().splitlines()
+        data_list = [item.split("ß¤") for item in data_list]
+        selected_row = []
+        for item in data_list:
+            if str(search) in item:
+                selected_row.append(item)
+        menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria', 'Business Value',
+                'Estimation', 'Status', 'Edit', 'Delete']
+        title = "Super Sprinter 3000"
+        if len(search) > 0:
+            return render_template('list.html', menu=menu, data_list=selected_row, title=title)
+        else:
+            return redirect("/list")
 
 
 if __name__ == "__main__":

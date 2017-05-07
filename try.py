@@ -1,7 +1,11 @@
 with open('database.csv') as data:
     data_list = data.read().splitlines()
     data_list = [item.split("ß¤") for item in data_list]
-    next_id = str(data_list[-1][0]) + 1
-    print(next_id)
+    for i in range(len(data_list)):
+        data_list[i][0] = i
 
-
+with open('database.csv', 'w') as file:
+    for item in data_list:
+        print(item)
+        # asd = "ß¤".join(str(item))
+        file.write("".join(str(item)) + "\n")

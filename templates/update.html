@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Update a story</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
 </head>
 <body>
@@ -23,7 +23,7 @@
             <input type="image" src="http://www.freeiconspng.com/uploads/add-create-new-plus-icon-26.png"/> 
         </form>
     </div>
-    <form class="createform" action="/story/{{ id }}" method="post">
+    <form class="editform" action="/story/{{ id }}" method="post">
         <h1>User Story manager</h1>
         <h2>Update your story</h2>
         <label>

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Update a story</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
 </head>
 <body>
@@ -29,6 +29,10 @@
             <li><a href="/story">About</a></li>
             <li><a href="/story">Contact</a></li>
             <li><a href="http://codecool.com">Codecool</a></li>
+            <li><form class="search" action="/search" method="POST">
+                 <span>Search by ID or anything</span><input type="text" id="search" name="search">
+                 <label><input id="searchbutton" type="submit" value="Go" /></label>
+                </form>  
         </ul>
     </div>
     <div class="create">
@@ -51,7 +55,7 @@
         {% for item in data_list %}
         <tr>
             {% for items in item %}
-            <td>{{ items }}</td>
+            <td class="scrollit"> {{ items }}</td>
             {% endfor %}
             <td><a href= /story/{{ item[0] }}> <img src="http://www.argus-tv.com/wiki/images/e/eb/ICN_EDIT_GREEN.PNG" height="20px" width="20px"/></a></td>  
             <td><form action="/delete/{{ item[0] }}" method="post">
