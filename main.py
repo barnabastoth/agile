@@ -10,7 +10,8 @@ def create():
     selected = ['', '', '', '', '']
     title = "Super Sprinter 3000 - Add new Story"
     id = ""
-    return render_template('update.html', sel_list=selected_story, id=id, selected=selected, title=title)
+    desc_text = "Add new Story"
+    return render_template('form.html', sel_list=selected_story, id=id, selected=selected, title=title, desc_text=desc_text)
 
 
 @app.route("/story", methods=['POST'])
@@ -56,7 +57,8 @@ def update_show(id):
             if selected_story[6] == options[i]:
                 selected[i] = "selected"
         title = "Super Sprinter 3000 - Edit Story"
-        return render_template('update.html', sel_list=selected_story, id=('/'+str(id)), selected=selected, title=title)
+        desc_text = "Edit Story"
+        return render_template('form.html', sel_list=selected_story, id=('/'+str(id)), selected=selected, title=title, desc_text=desc_text)
 
 
 @app.route("/story/<int:id>", methods=['POST'])
