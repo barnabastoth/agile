@@ -34,16 +34,16 @@ def create_save():
     with open('database.csv') as data:
         data_list = data.read().splitlines()
         data_list = [item.split("ß¤") for item in data_list]
-        next_id = ''
+        next_id = 0
         if len(data_list) > 0:
             next_id = str(int(data_list[-1][0]) + 1)
 
     with open('database.csv', 'a') as file:
-        file.write(str(next_id + "ß¤"))
+        file.write(str(next_id) + "ß¤")
         file.write(str(title + "ß¤"))
         file.write(str(story + "ß¤"))
         file.write(str(criteria + "ß¤"))
-        file.write(str(business + "h" + "ß¤"))
+        file.write(str(business + "ß¤"))
         file.write(str(estimation + "ß¤"))
         file.write(str(progress + "\n"))
     return redirect("/list")
