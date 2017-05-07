@@ -32,7 +32,20 @@
             <li><form class="search" action="/search" method="POST">
                  <span>Search by ID or anything</span><input type="text" id="search" name="search">
                  <label><input id="searchbutton" type="submit" value="Go" /></label>
-                </form>  
+                </form></li>
+            <li><form class="sortby" action="/sortby" method="POST">
+                <span>Sort the list by: </span>
+                <select name="sortby" required>
+                    <option value="ID">ID</option>
+                    <option value="Title">Title</option>
+                    <option value="User Story">User Story</option>
+                    <option value="Acceptance Criteria">Acceptance Criteria</option>
+                    <option value="Business Value">Business Value</option>
+                    <option value="Estimation (h)">Estimation (h)</option>
+                    <option value="Status">Status</option>
+                </select>
+                <label><input id="searchbutton" type="submit" value="Go" /></label>
+                </form></li> 
         </ul>
     </div>
     <div class="create">

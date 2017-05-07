@@ -6,8 +6,11 @@ app = Flask(__name__)
 
 @app.route('/story')
 def create():
+    selected_story = []
+    selected = ['', '', '', '', '']
     title = "Super Sprinter 3000 - Add new Story"
-    return render_template('create.html', title=title)
+    id = ""
+    return render_template('update.html', sel_list=selected_story, id=id, selected=selected, title=title)
 
 
 @app.route("/story", methods=['POST'])
@@ -53,7 +56,7 @@ def update_show(id):
             if selected_story[6] == options[i]:
                 selected[i] = "selected"
         title = "Super Sprinter 3000 - Edit Story"
-        return render_template('update.html', sel_list=selected_story, id=id, selected=selected, title=title)
+        return render_template('update.html', sel_list=selected_story, id=('/'+str(id)), selected=selected, title=title)
 
 
 @app.route("/story/<int:id>", methods=['POST'])
@@ -109,7 +112,7 @@ def delete(id):
             file.write(str(datas) + "\n")
     menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria',
             'Business Value', 'Estimation', 'Status', 'Edit', 'Delete']
-    return render_template('list.html', menu=menu, data_list=data_list, id=str(id))
+    return render_template('list.html', menu=menu, data_list=data_list, id=('/' + str(id)))
 
 
 @app.route("/search", methods=['POST'])
@@ -129,6 +132,32 @@ def search():
             return render_template('list.html', menu=menu, data_list=selected_row, title=title)
         else:
             return redirect("/list")
+
+
+@app.route("/sortby", methods=['POST'])
+def sortby():
+    search = str(request.form['sortby'])
+    menu = ['ID', 'Story Title', 'User Story', 'Acceptance Criteria', 'Business Value',
+            'Estimation', 'Status', 'Edit', 'Delete']
+    title = "Super Sprinter 3000"
+    with open('database.csv') as data:
+        data_list = data.read().splitlines()
+        data_list = [item.split("ß¤") for item in data_list]
+        if search == 'ID':
+            data_list = sorted(data_list, key=lambda x: int(x[0]))
+        elif search == 'Title':
+            data_list = sorted(data_list, key=lambda x: str(x[1]))
+        elif search == 'User Story':
+            data_list = sorted(data_list, key=lambda x: str(x[2]))
+        elif search == 'Acceptance Criteria':
+            data_list = sorted(data_list, key=lambda x: str(x[3]))
+        elif search == 'Business Value':
+            data_list = sorted(data_list, key=lambda x: int(x[4]))
+        elif search == 'Estimation (h)':
+            data_list = sorted(data_list, key=lambda x: float(x[5]))
+        elif search == 'Status':
+            data_list = sorted(data_list, key=lambda x: str(x[6]))
+    return render_template('list.html', menu=menu, data_list=data_list, title=title)
 
 
 if __name__ == "__main__":

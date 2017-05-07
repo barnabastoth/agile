@@ -108,6 +108,14 @@ div.leftmenu form input {
     width: 20%; 
     border-radius: 5px;
     }
+
+div.leftmenu form select {
+    width: 60%;
+    background-color: #6d7891;
+    border: 0px solid black;
+    color: white;
+    text-align: center;
+}
 /*Left navigation bar*/
 
 
