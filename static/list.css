@@ -22,9 +22,8 @@ table.mainlist {
     margin-right: 0px;
     margin-left: auto;
 }
-/*table.mainlist:active {
-    table-layout: auto;
-}*/
+
+
 /*front page top menu*/
 table.topmenu {
     top: 0px;
@@ -121,13 +120,7 @@ div.leftmenu form select {
     color: white;
     font-style: italic;
 }
-form.search input {
-}
-div.leftmenu span {
-}
 /*Left navigation bar*/
-
-
 
 
 
@@ -147,24 +140,22 @@ div.create input:hover { opacity: 1; -webkit-filter: brightness(150%); }
 
 
 
-
-
 /*Edit/Create page*/
 form.editform {
-    top: 30px;
+    top: 80px;
     background-color: #434b5b;
     margin: auto;
     position: relative;
-    width: 60%;
-    height: 800px;
+    width: 40%;
+    height: 600px;
     border-radius: 15px;
     padding: 0px 20px 20px 20px;
     float: center;
     color: #feda6a;
     border: 1px solid black;
 }
-form.editform h1 {font-size: 1.5vw;}
-form.editform h2 {font-size: 1.2vw;}
+form.editform h1 {font-size: 1.3vw;}
+form.editform h2 {font-size: 1.0vw;}
 form.editform input, select{ 
     width: 100%;
     padding: 2px;
@@ -177,12 +168,11 @@ form.editform input, select{
 }
 form.editform textarea{
     width: 100%;
-    height: 200px;
+    height: 100px;
     padding: 2px;
     border-radius: 4px;
     background-color: #6d7891;
     border: 0px;  
     color: white;
 }
-
 /*Edit page*/
